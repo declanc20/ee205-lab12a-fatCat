@@ -9,7 +9,7 @@ int main() {
     //test that the weight is initialized to 1.
     Weight myWeight = Weight();
     cout<< myWeight.getWeight() <<endl;
-    cout<< myWeight.unit <<endl;
+    //cout<< myWeight.unit <<endl;
 
     //test conversion functions
     cout<<Weight::convertWeight(5, Weight::POUND, Weight::KILO)<<endl;

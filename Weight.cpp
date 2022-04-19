@@ -108,7 +108,11 @@ float Weight::getWeight() const {
     return weight;
 }
 
-void Weight::setWeight(float weight) {
+float Weight::getWeight(Weight::UnitOfWeight weightUnits) const noexcept{
+     return convertWeight(Weight::weight, Weight::unit, weightUnits );
+ }
+
+void Weight::setWeight(float newWeight) {
     Weight::weight = weight;
 }
 
@@ -120,4 +124,16 @@ Weight::UnitOfWeight Weight::getWeightUnit() const noexcept{
      return unit;
  }
 
+void Weight::setWeight(float newWeight, UnitOfWeight weightUnits){
+     Weight::weight = newWeight;
+     Weight::unit = weightUnits;
+ }
 
+bool Weight::hasMaxWeight() const noexcept {
+
+     return Weight::bHasMax;
+}
+
+bool Weight::isWeightKnown() const noexcept {
+    return Weight::bIsKnown;
+}

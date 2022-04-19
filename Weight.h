@@ -27,16 +27,20 @@ public: //Weight and its unit variable declarations
     bool bHasMax;
 
 
-private:
+private: //private getters and setters
     void setMaxWeight(float newMaxWeight);
+    void setWeight(float newWeight);
+    void setWeight(float newWeight, UnitOfWeight weightUnits);
 
 public: //public getters and setters
     float getWeight() const;
-    void setWeight(float weight);
+    float getWeight(Weight::UnitOfWeight weightUnits) const noexcept;
     float getMaxWeight() const noexcept;
     UnitOfWeight getWeightUnit() const noexcept;
+    bool isWeightKnown() const noexcept;
+    bool hasMaxWeight() const noexcept;
 
-public://initialization functions and constructors
+public://initial ization functions and constructors
 
     //set the weight, first to unknown (no params), then to a value (newWeight param)
     Weight() noexcept;
