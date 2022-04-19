@@ -9,6 +9,7 @@ int main() {
     //test that the weight is initialized to 1.
     Weight myWeight = Weight();
     cout<< myWeight.weight <<endl;
+    cout<< myWeight.unit <<endl;
 
     return 0;
 

@@ -16,10 +16,31 @@
 #include "Weight.h"
 
 
-//initial constructor sets weight to UNKNOWN
+//initial constructor sets weight to UNKNOWN and unit of weight ot pounds
 Weight::Weight() noexcept{
     weight = UNKNOWN_WEIGHT;
+    unit = POUND;
+
 }
+
+//initial constructor that actually initialzies the weight from the user (main)
+Weight::Weight(float newWeight) {
+    weight = newWeight;
+}
+
+Weight::Weight(UnitOfWeight newUnitOfWeight) noexcept {
+
+    unit = newUnitOfWeight;
+}
+
+
+/*Weight(float newWeight, UnitOfWeight newUnitOfWeight);
+Weight(float newWeight, float newMaxWeight);
+Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight);
+Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight);*/
+
+
+
 
 //define weight constant conversions
 const float Weight::UNKNOWN_WEIGHT = -1; //set the weight to an impossible value
@@ -28,6 +49,11 @@ const float Weight::SLUGS_IN_A_POUND = 0.031081 ;
 static const std::string POUND_LABEL = "POUND";
 static const std::string KILO_LABEL = "KILO" ;
 static const std::string SLUG_LABEL = "SLUG";
+
+
+
+
+
 
 //weight conversion functions
 static float fromKilogramToPound(float kilogram) noexcept;

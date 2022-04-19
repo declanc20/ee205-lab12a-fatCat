@@ -15,16 +15,31 @@
 
 class Weight {
 
-public:
-    float weight;
-
-    //set the weight
-public:
-    Weight() noexcept;
-    Weight(float newWeight);
 
 public: //Enumerators
     enum UnitOfWeight {POUND, KILO, SLUG };
+
+public: //Weight and its unit variable declarations
+    float weight;
+    enum UnitOfWeight unit;
+
+
+
+public://initialization functions and constructors
+
+    //set the weight, first to unknown (no params), then to a value (newWeight param)
+    Weight() noexcept;
+    Weight(float newWeight);
+
+    //update weights and limits on weights
+    Weight(UnitOfWeight newUnitOfWeight) noexcept;
+    Weight(float newWeight, UnitOfWeight newUnitOfWeight);
+    Weight(float newWeight, float newMaxWeight);
+    Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight);
+    Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight);
+
+
+
 
 public: //conversion constants and labels
     static const float UNKNOWN_WEIGHT;
