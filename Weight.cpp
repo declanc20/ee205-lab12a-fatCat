@@ -41,10 +41,12 @@ Weight::Weight(const float newWeight, UnitOfWeight newUnitOfWeight){
 Weight::Weight(float newWeight, float newMaxWeight){
     maxWeight = newWeight;
 }
-/*Weight::Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight){
+
+/*Weight::Weight(Weight::UnitOfWeight newUnitOfWeight, float newMaxWeight){
 
 }
-Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight);*/
+Weight::Weight(float newWeight, Weight::UnitOfWeight newUnitOfWeight, float newMaxWeight){
+ }*/
 
 
 
@@ -63,8 +65,33 @@ static const std::string SLUG_LABEL = "SLUG";
 
 
 //weight conversion functions
-static float fromKilogramToPound(float kilogram) noexcept;
-static float fromPoundToKilogram(float kilogram) noexcept;
-static float fromSlugToPound(float slug) noexcept;
-static float fromPoundToSlug(float pound) noexcept;
-static float convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Weight::UnitOfWeight toUnit) noexcept;
+ float Weight::fromKilogramToPound(float kilogram) noexcept{
+       return kilogram/KILOS_IN_A_POUND;
+}
+float Weight::fromPoundToKilogram(float pound) noexcept{
+    return pound*KILOS_IN_A_POUND;
+}
+float Weight::fromSlugToPound(float slug) noexcept {
+    return slug / SLUGS_IN_A_POUND;
+}
+float Weight::fromPoundToSlug(float pound) noexcept{
+   return pound * SLUGS_IN_A_POUND;
+}
+float Weight::convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Weight::UnitOfWeight toUnit) noexcept{
+
+     //always convert to pounds (a common unit)
+    float weightInPounds;
+    switch(fromUnit){
+        case (POUND): weightInPounds = fromWeight; break;
+        case (KILO): weightInPounds = fromKilogramToPound(fromWeight); break;
+        case(SLUG): weightInPounds = fromSlugToPound(fromWeight); break;
+    }
+
+    //now convert to whatever unit is needed from pounds
+    switch(toUnit){
+        case (POUND): return weightInPounds;
+        case (KILO): return fromPoundToKilogram(weightInPounds);
+        case(SLUG): return fromPoundToSlug(weightInPounds);
+    }
+
+}

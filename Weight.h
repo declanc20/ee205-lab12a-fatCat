@@ -53,7 +53,7 @@ public: //conversion constants and labels
 public: //weight conversions
 
     static float fromKilogramToPound(float kilogram) noexcept;
-    static float fromPoundToKilogram(float kilogram) noexcept;
+    static float fromPoundToKilogram(float poun) noexcept;
     static float fromSlugToPound(float slug) noexcept;
     static float fromPoundToSlug(float pound) noexcept;
     static float convertWeight(float fromWeight, UnitOfWeight fromUnit, UnitOfWeight toUnit) noexcept;

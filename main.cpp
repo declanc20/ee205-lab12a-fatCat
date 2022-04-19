@@ -11,6 +11,23 @@ int main() {
     cout<< myWeight.weight <<endl;
     cout<< myWeight.unit <<endl;
 
+    //test conversion functions
+    cout<<Weight::convertWeight(5, Weight::POUND, Weight::KILO)<<endl;
+    cout<<Weight::convertWeight(5, Weight::POUND, Weight::SLUG)<<endl;
+    cout<<Weight::convertWeight(5, Weight::POUND, Weight::POUND)<<endl;
+    cout<<Weight::convertWeight(5, Weight::SLUG, Weight::SLUG)<<endl;
+    cout<<Weight::convertWeight(5, Weight::SLUG, Weight::KILO)<<endl;
+    cout<<Weight::convertWeight(5, Weight::SLUG, Weight::POUND)<<endl;
+    cout<<Weight::convertWeight(5, Weight::KILO, Weight::KILO)<<endl;
+    cout<<Weight::convertWeight(5, Weight::KILO, Weight::SLUG)<<endl;
+    cout<<Weight::convertWeight(5, Weight::KILO, Weight::POUND)<<endl;
+
+
+
+
+
+
+
     return 0;
 
 
