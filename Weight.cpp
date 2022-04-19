@@ -46,10 +46,27 @@ Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight){
     setWeight(newWeight,newUnitOfWeight);
     setMaxWeight(UNKNOWN_WEIGHT);
 }
-/*
-Weight::Weight(float newWeight, float newMaxWeight);
-Weight::Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight);
-Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight);*/
+
+Weight::Weight(float newWeight, float newMaxWeight){
+    bHasMax = true;
+    setMaxWeight(newMaxWeight);
+    setWeight(newWeight);
+    unit = POUND;
+}
+Weight::Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight){
+    bHasMax = true;
+    bIsKnown= false;
+    weight=UNKNOWN_WEIGHT;
+    setMaxWeight(newMaxWeight);
+    unit = newUnitOfWeight;
+}
+
+Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight){
+    bHasMax = true;
+    bIsKnown= false;
+    setWeight(newWeight,newUnitOfWeight);
+    setMaxWeight(newMaxWeight);
+}
 
 
 
@@ -135,7 +152,7 @@ float Weight::convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Wei
         case (KILO): return fromPoundToKilogram(weightInPounds);
         case(SLUG): return fromPoundToSlug(weightInPounds);
     }
-
+    return 0;
 }
 
 bool Weight::isWeightValid(float checkWeight) const noexcept {
