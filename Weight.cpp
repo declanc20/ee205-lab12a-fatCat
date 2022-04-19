@@ -15,7 +15,20 @@
 #include <iomanip>
 #include "Weight.h"
 
-//7 consturctors
+using namespace std;
+
+/*std::ostream& operator<<( ostream& lhs_stream
+        ,const Weight::UnitOfWeight rhs_UnitOfWeight ) {
+    switch( rhs_UnitOfWeight ) {
+        case Weight::POUND: return lhs_stream << Weight::POUND_LABEL ;
+        case Weight::KILO: return lhs_stream << Weight::KILO_LABEL ;
+        case Weight::SLUG: return lhs_stream << Weight::SLUG_LABEL ;
+        default:
+            throw out_of_range( "The unit can’t be mapped to a string" );
+    }
+}*/
+
+// consturctors
 //initial constructor sets weight to UNKNOWN and unit of weight ot pounds
 Weight::Weight() noexcept{
     bIsKnown= false;
@@ -77,9 +90,9 @@ Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight
 const float Weight::UNKNOWN_WEIGHT = -1; //set the weight to an impossible value
 const float Weight::KILOS_IN_A_POUND = 0.453592 ;
 const float Weight::SLUGS_IN_A_POUND = 0.031081 ;
-static const std::string POUND_LABEL = "POUND";
-static const std::string KILO_LABEL = "KILO" ;
-static const std::string SLUG_LABEL = "SLUG";
+static const string POUND_LABEL = "POUND";
+static const string KILO_LABEL = "KILO" ;
+static const string SLUG_LABEL = "SLUG";
 
 
 //getters and setters

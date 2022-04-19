@@ -71,6 +71,8 @@ public://validation functions
     bool isWeightValid(float checkWeight) const noexcept;
     bool validate() const noexcept;
 
+    friend std::ostream &operator<<(std::ostream &os, const Weight &weight);
+
 
 };
 
