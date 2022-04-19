@@ -22,6 +22,7 @@ public: //Enumerators
 public: //Weight and its unit variable declarations
     float weight;
     enum UnitOfWeight unit;
+    float maxWeight;
 
 
 
