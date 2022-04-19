@@ -81,13 +81,26 @@ Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight
     setMaxWeight(newMaxWeight);
 }
 
-
-
-
-
-
 //define weight constant conversions
-const float Weight::UNKNOWN_WEIGHT = -1; //set the weight to an impossible value
+const float Weight::UNKNOWN_WEIGHT = -1;
+
+bool Weight::operator<(const Weight &rhs_Weight) const {
+    float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
+    float rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
+    return lhs_weight < rhs_weight;
+}
+
+bool Weight::operator==( const Weight& rhs_Weight ) const {
+    /// Remember to convert the two weight's units into a common unit!
+    /// Treat unknown weights as 0 (so we can sort them without dealing
+    /// with exceptions)
+    float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
+    float rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
+    return lhs_weight == rhs_weight;
+}
+
+
+//set the weight to an impossible value
 const float Weight::KILOS_IN_A_POUND = 0.453592 ;
 const float Weight::SLUGS_IN_A_POUND = 0.031081 ;
 static const string POUND_LABEL = "POUND";
