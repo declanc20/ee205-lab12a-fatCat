@@ -18,6 +18,8 @@
 
 //initial constructor sets weight to UNKNOWN and unit of weight ot pounds
 Weight::Weight() noexcept{
+    bIsKnown= false;
+    bHasMax = false;
     weight = UNKNOWN_WEIGHT;
     unit = POUND;
 
@@ -95,3 +97,27 @@ float Weight::convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Wei
     }
 
 }
+
+
+//getters and setters
+void Weight::setMaxWeight(float newMaxWeight) {
+    Weight::maxWeight = newMaxWeight;
+}
+
+float Weight::getWeight() const {
+    return weight;
+}
+
+void Weight::setWeight(float weight) {
+    Weight::weight = weight;
+}
+
+float Weight::getMaxWeight() const noexcept{
+     return maxWeight;
+ }
+
+Weight::UnitOfWeight Weight::getWeightUnit() const noexcept{
+     return unit;
+ }
+
+

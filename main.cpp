@@ -8,7 +8,7 @@ int main() {
 
     //test that the weight is initialized to 1.
     Weight myWeight = Weight();
-    cout<< myWeight.weight <<endl;
+    cout<< myWeight.getWeight() <<endl;
     cout<< myWeight.unit <<endl;
 
     //test conversion functions

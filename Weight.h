@@ -23,8 +23,18 @@ public: //Weight and its unit variable declarations
     float weight;
     enum UnitOfWeight unit;
     float maxWeight;
+    bool bIsKnown;
+    bool bHasMax;
 
 
+private:
+    void setMaxWeight(float newMaxWeight);
+
+public: //public getters and setters
+    float getWeight() const;
+    void setWeight(float weight);
+    float getMaxWeight() const noexcept;
+    UnitOfWeight getWeightUnit() const noexcept;
 
 public://initialization functions and constructors
 
@@ -58,12 +68,11 @@ public: //weight conversions
     static float fromPoundToSlug(float pound) noexcept;
     static float convertWeight(float fromWeight, UnitOfWeight fromUnit, UnitOfWeight toUnit) noexcept;
 
-
-
-
-
-
 };
+
+
+
+
 
 
 
