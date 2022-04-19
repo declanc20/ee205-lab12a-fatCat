@@ -140,6 +140,18 @@ bool Weight::isWeightValid(float checkWeight) const noexcept {
     else if (bHasMax == true && checkWeight >0 && checkWeight<=maxWeight){
         return true;
     }
+
+    return false;
+}
+bool Weight::validate() const noexcept{
+    if (bHasMax == false && weight >0){
+        return true;
+    }
+
+    else if (bHasMax && Weight::weight> 0 && Weight::weight <=maxWeight){
+        return true;
+    }
+
     return false;
 }
 
