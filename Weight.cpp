@@ -15,7 +15,7 @@
 #include <iomanip>
 #include "Weight.h"
 
-
+//7 consturctors
 //initial constructor sets weight to UNKNOWN and unit of weight ot pounds
 Weight::Weight() noexcept{
     bIsKnown= false;
@@ -25,30 +25,28 @@ Weight::Weight() noexcept{
 
 }
 
-//initial constructor that actually initialzies the weight from the user (main)
-Weight::Weight(const float newWeight) {
-    weight = newWeight;
+Weight::Weight(float newWeight){
+    bIsKnown = false;
+    bHasMax = false;
+    setWeight(newWeight);
+    unit = POUND;
+    setMaxWeight(UNKNOWN_WEIGHT);
 }
 
-Weight::Weight(UnitOfWeight newUnitOfWeight) noexcept {
+/*Weight::Weight(UnitOfWeight newUnitOfWeight) noexcept{
+    bIsKnown = false;
+    bHasMax = false;
+    setWeight(newWeight);
+    unit = POUND;
+    setMaxWeight(UNKNOWN_WEIGHT);
+}*/
+ /*
+Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight);
+Weight::Weight(float newWeight, float newMaxWeight);
+Weight::Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight);
+Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight);*/
 
-    unit = newUnitOfWeight;
-}
 
-
-Weight::Weight(const float newWeight, UnitOfWeight newUnitOfWeight){
-    weight = newWeight;
-    unit = newUnitOfWeight;
-}
-Weight::Weight(float newWeight, float newMaxWeight){
-    maxWeight = newWeight;
-}
-
-/*Weight::Weight(Weight::UnitOfWeight newUnitOfWeight, float newMaxWeight){
-
-}
-Weight::Weight(float newWeight, Weight::UnitOfWeight newUnitOfWeight, float newMaxWeight){
- }*/
 
 
 
@@ -60,43 +58,6 @@ const float Weight::SLUGS_IN_A_POUND = 0.031081 ;
 static const std::string POUND_LABEL = "POUND";
 static const std::string KILO_LABEL = "KILO" ;
 static const std::string SLUG_LABEL = "SLUG";
-
-
-
-
-
-
-//weight conversion functions
- float Weight::fromKilogramToPound(float kilogram) noexcept{
-       return kilogram/KILOS_IN_A_POUND;
-}
-float Weight::fromPoundToKilogram(float pound) noexcept{
-    return pound*KILOS_IN_A_POUND;
-}
-float Weight::fromSlugToPound(float slug) noexcept {
-    return slug / SLUGS_IN_A_POUND;
-}
-float Weight::fromPoundToSlug(float pound) noexcept{
-   return pound * SLUGS_IN_A_POUND;
-}
-float Weight::convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Weight::UnitOfWeight toUnit) noexcept{
-
-     //always convert to pounds (a common unit)
-    float weightInPounds;
-    switch(fromUnit){
-        case (POUND): weightInPounds = fromWeight; break;
-        case (KILO): weightInPounds = fromKilogramToPound(fromWeight); break;
-        case(SLUG): weightInPounds = fromSlugToPound(fromWeight); break;
-    }
-
-    //now convert to whatever unit is needed from pounds
-    switch(toUnit){
-        case (POUND): return weightInPounds;
-        case (KILO): return fromPoundToKilogram(weightInPounds);
-        case(SLUG): return fromPoundToSlug(weightInPounds);
-    }
-
-}
 
 
 //getters and setters
@@ -113,7 +74,8 @@ float Weight::getWeight(Weight::UnitOfWeight weightUnits) const noexcept{
  }
 
 void Weight::setWeight(float newWeight) {
-    Weight::weight = weight;
+    Weight::weight = newWeight;
+    Weight::bIsKnown = true;
 }
 
 float Weight::getMaxWeight() const noexcept{
@@ -137,3 +99,47 @@ bool Weight::hasMaxWeight() const noexcept {
 bool Weight::isWeightKnown() const noexcept {
     return Weight::bIsKnown;
 }
+
+
+//weight conversion functions
+float Weight::fromKilogramToPound(float kilogram) noexcept{
+    return kilogram/KILOS_IN_A_POUND;
+}
+float Weight::fromPoundToKilogram(float pound) noexcept{
+    return pound*KILOS_IN_A_POUND;
+}
+float Weight::fromSlugToPound(float slug) noexcept {
+    return slug / SLUGS_IN_A_POUND;
+}
+float Weight::fromPoundToSlug(float pound) noexcept{
+    return pound * SLUGS_IN_A_POUND;
+}
+float Weight::convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Weight::UnitOfWeight toUnit) noexcept{
+
+    //always convert to pounds (a common unit)
+    float weightInPounds;
+    switch(fromUnit){
+        case (POUND): weightInPounds = fromWeight; break;
+        case (KILO): weightInPounds = fromKilogramToPound(fromWeight); break;
+        case(SLUG): weightInPounds = fromSlugToPound(fromWeight); break;
+    }
+
+    //now convert to whatever unit is needed from pounds
+    switch(toUnit){
+        case (POUND): return weightInPounds;
+        case (KILO): return fromPoundToKilogram(weightInPounds);
+        case(SLUG): return fromPoundToSlug(weightInPounds);
+    }
+
+}
+
+bool Weight::isWeightValid(float checkWeight) const noexcept {
+    if (checkWeight > 0 && bHasMax == false){
+        return true;
+    }
+    else if (bHasMax == true && checkWeight >0 && checkWeight<=maxWeight){
+        return true;
+    }
+    return false;
+}
+

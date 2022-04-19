@@ -19,7 +19,7 @@ class Weight {
 public: //Enumerators
     enum UnitOfWeight {POUND, KILO, SLUG };
 
-public: //Weight and its unit variable declarations
+private: //Weight and its unit variable declarations
     float weight;
     enum UnitOfWeight unit;
     float maxWeight;
@@ -30,9 +30,8 @@ public: //Weight and its unit variable declarations
 private: //private getters and setters
     void setMaxWeight(float newMaxWeight);
     void setWeight(float newWeight);
+public://public getters and setters
     void setWeight(float newWeight, UnitOfWeight weightUnits);
-
-public: //public getters and setters
     float getWeight() const;
     float getWeight(Weight::UnitOfWeight weightUnits) const noexcept;
     float getMaxWeight() const noexcept;
@@ -40,13 +39,9 @@ public: //public getters and setters
     bool isWeightKnown() const noexcept;
     bool hasMaxWeight() const noexcept;
 
-public://initial ization functions and constructors
-
-    //set the weight, first to unknown (no params), then to a value (newWeight param)
+public://constructors
     Weight() noexcept;
     Weight(float newWeight);
-
-    //update weights and limits on weights
     Weight(UnitOfWeight newUnitOfWeight) noexcept;
     Weight(float newWeight, UnitOfWeight newUnitOfWeight);
     Weight(float newWeight, float newMaxWeight);
@@ -72,7 +67,15 @@ public: //weight conversions
     static float fromPoundToSlug(float pound) noexcept;
     static float convertWeight(float fromWeight, UnitOfWeight fromUnit, UnitOfWeight toUnit) noexcept;
 
+public://validation functions
+    bool isWeightValid(float checkWeight) const noexcept;
+    bool validate() const noexcept;
+
+
 };
+
+
+
 
 
 

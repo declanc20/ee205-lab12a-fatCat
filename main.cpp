@@ -22,6 +22,12 @@ int main() {
     cout<<Weight::convertWeight(5, Weight::KILO, Weight::SLUG)<<endl;
     cout<<Weight::convertWeight(5, Weight::KILO, Weight::POUND)<<endl;
 
+    //test each constructor
+    myWeight=Weight(5);
+    cout<<myWeight.getWeight()<<endl;
+
+
+
 
 
 
