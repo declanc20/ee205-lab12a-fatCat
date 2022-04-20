@@ -49,9 +49,11 @@ Weight::Weight() noexcept{
 Weight::Weight(float newWeight){
     bIsKnown = false;
     bHasMax = false;
+    isWeightValid(newWeight); // make sure weight is valid
     setWeight(newWeight);
     unit = POUND;
     setMaxWeight(UNKNOWN_WEIGHT);
+    assert(validate());
 }
 
 Weight::Weight(UnitOfWeight newUnitOfWeight) noexcept{
@@ -60,16 +62,20 @@ Weight::Weight(UnitOfWeight newUnitOfWeight) noexcept{
     weight = UNKNOWN_WEIGHT;
     unit = newUnitOfWeight;
     setMaxWeight(UNKNOWN_WEIGHT);
+    assert(validate());
 }
 
 Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight){
     bHasMax = false;
+    isWeightValid(newWeight);
     setWeight(newWeight,newUnitOfWeight);
     setMaxWeight(UNKNOWN_WEIGHT);
+    assert(validate());
 }
 
 Weight::Weight(float newWeight, float newMaxWeight){
     bHasMax = true;
+    isWeightValid(validate());
     setMaxWeight(newMaxWeight);
     setWeight(newWeight);
     unit = POUND;
@@ -192,16 +198,19 @@ bool Weight::isWeightValid(float checkWeight) const noexcept {
         return true;
     }
 
-    return false;
+    throw ("weight is not valid");
 }
 bool Weight::validate() const noexcept {
-    if (bHasMax == false && weight > 0) {
+    if( Weight::weight == UNKNOWN_WEIGHT){
+        return true;
+    }
+    else if (bHasMax == false && weight > 0) {
         return true;
     } else if (bHasMax && Weight::weight > 0 && Weight::weight <= maxWeight) {
         return true;
     }
 
-    return false;
+    throw ("weight is not valid");
 }
 
     /// Format a line for printing the members of a class
