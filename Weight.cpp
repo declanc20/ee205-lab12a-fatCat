@@ -92,10 +92,12 @@ Weight::Weight(UnitOfWeight newUnitOfWeight, float newMaxWeight){
 }
 
 Weight::Weight(float newWeight, UnitOfWeight newUnitOfWeight, float newMaxWeight){
+    maxWeight = newMaxWeight;
+    isWeightValid(newWeight);
+    weight = newWeight;
     bHasMax = true;
-    bIsKnown= false;
-    setWeight(newWeight,newUnitOfWeight);
-    setMaxWeight(newMaxWeight);
+    bIsKnown= true;
+    unit = newUnitOfWeight;
 }
 
 

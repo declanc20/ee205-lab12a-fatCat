@@ -19,6 +19,8 @@ class Weight {
 public: //Enumerators
     enum UnitOfWeight {POUND, KILO, SLUG };
 
+    void setWeight(float newWeight);
+
 private: //Weight and its unit variable declarations
     float weight;
     enum UnitOfWeight unit;
@@ -29,7 +31,7 @@ private: //Weight and its unit variable declarations
 
 private: //private getters and setters
     void setMaxWeight(float newMaxWeight);
-    void setWeight(float newWeight);
+
 public://public getters and setters
     void setWeight(float newWeight, UnitOfWeight weightUnits);
     float getWeight() const;

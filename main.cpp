@@ -17,7 +17,7 @@ int main() {
     Weight myWeight4 = Weight(14, Weight::KILO);
     Weight myWeight5 = Weight(20, 33);
     Weight myWeight6 = Weight(Weight::SLUG, 33);
-    //Weight myWeight7 = Weight(23, Weight::POUND, 33 );
+    Weight myWeight7 = Weight(23, Weight::POUND, 33 );
 
     myWeight.dump();
     myWeight2.dump();
@@ -25,7 +25,7 @@ int main() {
     myWeight4.dump();
     myWeight5.dump();
     myWeight6.dump();
-    //myWeight7.dump();
+    myWeight7.dump();
 
 
 #ifdef Debug
