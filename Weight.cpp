@@ -194,15 +194,29 @@ bool Weight::isWeightValid(float checkWeight) const noexcept {
 
     return false;
 }
-bool Weight::validate() const noexcept{
-    if (bHasMax == false && weight >0){
+bool Weight::validate() const noexcept {
+    if (bHasMax == false && weight > 0) {
         return true;
-    }
-
-    else if (bHasMax && Weight::weight> 0 && Weight::weight <=maxWeight){
+    } else if (bHasMax && Weight::weight > 0 && Weight::weight <= maxWeight) {
         return true;
     }
 
     return false;
 }
+
+    /// Format a line for printing the members of a class
+#define FORMAT_LINE( className, member ) cout << setw(8) << (className) << setw(20) << (member) << setw(52)
+    void Weight::dump() const noexcept{
+        cout << setw(80) << setfill( '=' ) << "" << endl ;
+        cout << setfill( ' ' ) ;
+        cout << left ;
+        cout << boolalpha ;
+        FORMAT_LINE( "Weight", "this" ) << &weight << endl ;
+        FORMAT_LINE( "Weight", "isKnown" ) << isWeightKnown() << endl ;
+        FORMAT_LINE( "Weight", "weight" ) <<  getWeight() << endl ;
+        FORMAT_LINE( "Weight", "unitOfWeight" ) << getWeightUnit() << endl ;
+        FORMAT_LINE( "Weight", "hasMax" ) << hasMaxWeight()<< endl ;
+        FORMAT_LINE( "Weight", "maxWeight" ) << getMaxWeight() << endl ;
+}
+
 

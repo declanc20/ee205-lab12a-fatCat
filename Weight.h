@@ -79,6 +79,8 @@ public://validation functions
 
   Weight &operator+=( float rhs_addToWeight );
 
+public: //print function
+    void dump() const noexcept;
 
 };
 
