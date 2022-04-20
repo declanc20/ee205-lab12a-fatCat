@@ -17,16 +17,24 @@
 
 using namespace std;
 
-/*std::ostream& operator<<( ostream& lhs_stream
+//set the weight to an impossible value
+const float Weight::KILOS_IN_A_POUND = 0.453592 ;
+const float Weight::SLUGS_IN_A_POUND = 0.031081 ;
+static const string POUND_LABEL = "POUND";
+static const string KILO_LABEL = "KILO" ;
+static const string SLUG_LABEL = "SLUG";
+
+
+ ostream& operator<<( ostream& lhs_stream
         ,const Weight::UnitOfWeight rhs_UnitOfWeight ) {
     switch( rhs_UnitOfWeight ) {
-        case Weight::POUND: return lhs_stream << Weight::POUND_LABEL ;
-        case Weight::KILO: return lhs_stream << Weight::KILO_LABEL ;
-        case Weight::SLUG: return lhs_stream << Weight::SLUG_LABEL ;
+        case Weight::POUND: return lhs_stream << POUND_LABEL ;
+        case Weight::KILO: return lhs_stream << KILO_LABEL ;
+        case Weight::SLUG: return lhs_stream << SLUG_LABEL ;
         default:
             throw out_of_range( "The unit can’t be mapped to a string" );
     }
-}*/
+}
 
 // consturctors
 //initial constructor sets weight to UNKNOWN and unit of weight ot pounds
@@ -91,21 +99,16 @@ bool Weight::operator<(const Weight &rhs_Weight) const {
 }
 
 bool Weight::operator==( const Weight& rhs_Weight ) const {
-    /// Remember to convert the two weight's units into a common unit!
-    /// Treat unknown weights as 0 (so we can sort them without dealing
-    /// with exceptions)
     float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
     float rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
     return lhs_weight == rhs_weight;
 }
 
+ Weight& Weight::operator+=( float rhs_addToWeight ) {
+     this -> weight += rhs_addToWeight;
+    return *this;
 
-//set the weight to an impossible value
-const float Weight::KILOS_IN_A_POUND = 0.453592 ;
-const float Weight::SLUGS_IN_A_POUND = 0.031081 ;
-static const string POUND_LABEL = "POUND";
-static const string KILO_LABEL = "KILO" ;
-static const string SLUG_LABEL = "SLUG";
+}
 
 
 //getters and setters

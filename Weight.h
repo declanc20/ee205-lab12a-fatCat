@@ -73,9 +73,11 @@ public://validation functions
 
     friend std::ostream &operator<<(std::ostream &os, const Weight &weight);
 
-    bool operator<(const Weight &rhs) const;
+    bool operator<(const Weight &rhs_Weight) const;
 
-    bool operator==(const Weight &rhs) const;
+    bool operator==(const Weight &rhs_Weight) const;
+
+  Weight &operator+=( float rhs_addToWeight );
 
 
 };
