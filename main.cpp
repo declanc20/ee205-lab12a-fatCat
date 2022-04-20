@@ -12,7 +12,7 @@ int main() {
 
 
     //test conversion functions
-    /*cout<<Weight::convertWeight(5, Weight::POUND, Weight::KILO)<<endl;
+    cout<<Weight::convertWeight(5, Weight::POUND, Weight::KILO)<<endl;
     cout<<Weight::convertWeight(5, Weight::POUND, Weight::SLUG)<<endl;
     cout<<Weight::convertWeight(5, Weight::POUND, Weight::POUND)<<endl;
     cout<<Weight::convertWeight(5, Weight::SLUG, Weight::SLUG)<<endl;
@@ -20,7 +20,7 @@ int main() {
     cout<<Weight::convertWeight(5, Weight::SLUG, Weight::POUND)<<endl;
     cout<<Weight::convertWeight(5, Weight::KILO, Weight::KILO)<<endl;
     cout<<Weight::convertWeight(5, Weight::KILO, Weight::SLUG)<<endl;
-    cout<<Weight::convertWeight(5, Weight::KILO, Weight::POUND)<<endl;*/
+    cout<<Weight::convertWeight(5, Weight::KILO, Weight::POUND)<<endl;
 
     //test all 7 constructors
     Weight myWeight = Weight();
@@ -40,7 +40,7 @@ int main() {
     myWeight7.dump();
 
 
-#ifdef Debug
+#ifdef Debug //All of these tests fail
     //myWeight2.setWeight(Weight::UNKNOWN_WEIGHT); //fails because weight can't be "un-kown"
     //myWeight5.setWeight(100); //fails because 100 pounds is more than max weight of 33
     //myWeight5.setWeight(100, Weight::KILO); //fails because 100 kilos is more than max wieght of 33 pounds
@@ -48,13 +48,21 @@ int main() {
 
     cout<<endl;
     cout<<endl;
-    cout<<endl;
 
+    //test overriden operators
     bool overrideTester = Weight(19)<Weight(17);
     cout<< overrideTester << endl;
     overrideTester = Weight(17)<Weight(19);
     cout<< overrideTester << endl;
 
+    overrideTester = Weight(19)==Weight(17);
+    cout<< overrideTester << endl;
+    overrideTester = Weight(17)==Weight(17);
+    cout<< overrideTester << endl;
+
+    Weight testWeight = Weight(3);
+    testWeight += 2;
+    cout<<testWeight.getWeight() <<endl;
 
 
     return 0;
